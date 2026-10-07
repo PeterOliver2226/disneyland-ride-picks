@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Disneyland Kid Ride Picks</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2f5bd3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232f5bd3'/%3E%3Cpath d='M32 10l6.5 13.2 14.5 2.1-10.5 10.2 2.5 14.5L32 43.2 19 50l2.5-14.5L11 25.3l14.5-2.1z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: phone-first single column; controls, then ranked cards (both kids) or rating groups (one kid); legend and sources at the end. */
+:root {
+  --bg: #f3f5f9; --surface: #ffffff; --ink: #1b2233; --muted: #5d6679; --line: #dde2ec;
+  --accent: #2f5bd3; --accent-ink: #ffffff; --accent-soft: #e5ecfc;
+  --star: #c98a00; --star-bg: #fff3d1;
+  --mine: #fff5d6; --mine-line: #e9c96b;
+  --high: #17714a;  --high-bg: #e1f3e9;
+  --med: #1d6a8a;   --med-bg: #e0f0f6;
+  --some: #8a6100;  --some-bg: #fbefd2;
+  --scary: #85306a; --scary-bg: #f5e3ef;
+  --intense: #ad3720; --intense-bg: #f9e3dd;
+  --inconv: #56607a; --inconv-bg: #eaedf3;
+  --height: #4a4fa3; --height-bg: #e8e8f7;
+  --closed: #ad3720; --closed-bg: #f9e3dd;
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r: 12px;
+  --shadow: 0 1px 2px rgba(20,30,60,.06), 0 4px 16px rgba(20,30,60,.05);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11151f; --surface: #1a1f2c; --ink: #e6e9f1; --muted: #9aa3b6; --line: #2c3344;
+    --accent: #7d9cf2; --accent-ink: #0e1220; --accent-soft: #232c45;
+    --star: #f2c14e; --star-bg: #3a3017;
+    --mine: #3a3320; --mine-line: #8a7433;
+    --high: #6fd1a0; --high-bg: #16362a;
+    --med: #78c3e0; --med-bg: #15323f;
+    --some: #e6bf62; --some-bg: #3a2f14;
+    --scary: #e39ccc; --scary-bg: #3a1d31;
+    --intense: #f19a86; --intense-bg: #3d1e17;
+    --inconv: #aab3c7; --inconv-bg: #262c3a;
+    --height: #a9adf0; --height-bg: #25264a;
+    --closed: #f19a86; --closed-bg: #3d1e17;
+    --shadow: 0 1px 2px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+[hidden] { display: none !important; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 16px; padding-block: calc(20px + env(safe-area-inset-top, 0px)) calc(48px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 16px; }
+
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(26px, 6vw, 38px); line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+.lede { margin: 0; color: var(--muted); max-width: 62ch; }
+
+.controls { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); padding: 14px; display: grid; gap: 12px; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 3px; gap: 3px; }
+.seg button { font: inherit; font-weight: 700; border: 0; background: transparent; color: var(--muted); padding: 8px 4px; border-radius: 8px; cursor: pointer; min-width: 0; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ctl-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field > span { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: .02em; }
+.field.grow { flex: 1 1 170px; }
+.ctl-row > label.field:not(.grow) { flex: 1 1 140px; }
+select, input[type="text"], input[type="number"], input[type="search"] { font: inherit; font-size: 16px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; min-width: 0; width: 100%; }
+.height-ctl { display: flex; align-items: center; gap: 6px; }
+.height-ctl input { width: 76px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 700; }
+.check { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; padding-block: 8px; }
+.check input { width: 18px; height: 18px; accent-color: var(--star); }
+.hint { font-size: 13px; color: var(--muted); margin: 0; }
+.btn { font: inherit; font-weight: 700; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.small { padding: 4px 9px; font-size: 13px; }
+
+/* Stars panel */
+.stars-panel { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 10px; }
+.stars-panel h2 { margin: 0; font-family: var(--f-display); font-size: 17px; font-weight: 800; display: flex; gap: 8px; align-items: center; }
+.stars-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+.share-box { display: grid; gap: 6px; }
+.share-box input { font-size: 13px; }
+.others { display: flex; flex-wrap: wrap; gap: 6px; }
+.other-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--star-bg); color: var(--ink); border-radius: 999px; padding: 3px 4px 3px 10px; font-size: 13px; font-weight: 700; }
+.other-tag button { all: unset; cursor: pointer; padding: 2px 8px; border-radius: 999px; color: var(--muted); }
+.other-tag button:hover { background: var(--surface); }
+
+.banner { border-radius: 10px; padding: 10px 12px; background: var(--star-bg); font-size: 14px; }
+
+.counts { display: flex; flex-wrap: wrap; gap: 6px; }
+.count { font: inherit; font-size: 13px; font-weight: 700; border: 0; border-radius: 999px; padding: 4px 10px; cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline; }
+.count b { font-variant-numeric: tabular-nums; }
+.count.zero { opacity: .45; }
+
+.side-label { font-family: var(--f-display); font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 6px 0 -4px; }
+.group { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; scroll-margin-top: 12px; }
+.group-head { display: flex; align-items: baseline; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.group-head h2 { font-family: var(--f-display); font-weight: 800; font-size: 19px; margin: 0; }
+.group-head .n { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--muted); }
+.group-head p { margin: 0; color: var(--muted); font-size: 13.5px; flex-basis: 100%; }
+.group.empty .group-head { border-bottom: 0; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; align-self: center; flex: none; }
+
+ul.cards { list-style: none; margin: 0; padding: 0; }
+.card { display: grid; gap: 6px; padding: 12px 14px; border-top: 1px solid var(--line); }
+.card:first-child { border-top: 0; }
+.card.starred { background: linear-gradient(90deg, var(--star-bg), transparent 70%); }
+.card-top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: start; }
+.star { all: unset; cursor: pointer; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; border: 1px solid var(--line); color: var(--muted); background: var(--surface); }
+.star svg { width: 20px; height: 20px; }
+.star[aria-pressed="true"] { color: var(--star); border-color: var(--star); background: var(--star-bg); }
+.star:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.title { min-width: 0; display: grid; gap: 2px; }
+.title h3 { margin: 0; font-size: 16px; line-height: 1.3; }
+.meta { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: center; }
+.park { font-weight: 700; font-size: 11.5px; letter-spacing: .04em; padding: 0 6px; border-radius: 5px; border: 1px solid var(--line); }
+.hreq { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--height); }
+.score { text-align: center; min-width: 46px; display: grid; line-height: 1.1; }
+.score b { font-family: var(--f-display); font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.score span { font-size: 10.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; font-weight: 700; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 13px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.chip small { font-weight: 400; opacity: .85; font-size: 12px; }
+.by { display: flex; flex-wrap: wrap; gap: 6px; }
+.by span { font-size: 12.5px; font-weight: 700; color: var(--star); background: var(--star-bg); border-radius: 999px; padding: 1px 8px; }
+.note { margin: 0; font-size: 14px; }
+.status, .auto { margin: 0; font-size: 13px; border-radius: 6px; padding: 3px 8px; justify-self: start; }
+.status { background: var(--inconv-bg); color: var(--inconv); }
+.status.closed { background: var(--closed-bg); color: var(--closed); font-weight: 700; }
+.auto { background: var(--height-bg); color: var(--height); }
+.mine { margin: 0; font-size: 14px; background: var(--mine); border-left: 3px solid var(--mine-line); padding: 4px 8px; border-radius: 0 6px 6px 0; white-space: pre-wrap; }
+details summary { cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--accent); }
+details p { margin: 6px 0 0; font-size: 14px; }
+.empty-msg { padding: 12px 14px; color: var(--muted); font-size: 14px; margin: 0; }
+.list-head { display: flex; justify-content: space-between; align-items: end; gap: 10px; flex-wrap: wrap; }
+.list-head p { margin: 0; color: var(--muted); font-size: 13.5px; max-width: 52ch; }
+
+.c-high { background: var(--high-bg); color: var(--high); }
+.c-med { background: var(--med-bg); color: var(--med); }
+.c-some { background: var(--some-bg); color: var(--some); }
+.c-scary { background: var(--scary-bg); color: var(--scary); }
+.c-intense { background: var(--intense-bg); color: var(--intense); }
+.c-inconv { background: var(--inconv-bg); color: var(--inconv); }
+.c-height { background: var(--height-bg); color: var(--height); }
+.d-high { background: var(--high); } .d-med { background: var(--med); } .d-some { background: var(--some); }
+.d-scary { background: var(--scary); } .d-intense { background: var(--intense); } .d-inconv { background: var(--inconv); } .d-height { background: var(--height); }
+
+.info { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; min-width: 0; }
+.panel h3 { font-family: var(--f-display); font-weight: 800; font-size: 17px; margin: 0 0 8px; }
+.panel p, .panel li { font-size: 14px; }
+.panel p { margin: 0 0 8px; }
+.legend { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.legend li { display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: baseline; }
+.sources { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.sources a { color: var(--accent); overflow-wrap: anywhere; }
+.sources span { color: var(--muted); }
+.wide { grid-column: 1 / -1; }
+
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); padding: 9px 14px; border-radius: 10px; font-size: 14px; z-index: 30; max-width: calc(100% - 32px); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: no-preference) { .btn, .seg button, .count, .star { transition: background-color .15s, color .15s, border-color .15s; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Disneyland Resort · family list · updated Oct 7, 2026</div>
+    <h1>Disneyland Kid Ride Picks</h1>
+    <p class="lede">Every ride at Disneyland and California Adventure, rated for our 7-month-old and our 4-year-old. Star the ones you're excited about; they jump to the top.</p>
+  </header>
+
+  <section class="controls" aria-label="View and filters">
+    <div class="seg" role="group" aria-label="Whose list">
+      <button type="button" id="v-both" data-view="both" aria-pressed="false">Both kids</button>
+      <button type="button" id="v-baby" data-view="baby" aria-pressed="false">7-month-old</button>
+      <button type="button" id="v-kid" data-view="kid" aria-pressed="false">4-year-old</button>
+    </div>
+    <div class="ctl-row">
+      <label class="field grow">
+        <span>Search</span>
+        <input type="search" id="f-search" placeholder="Ride, land or note" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Park</span>
+        <select id="f-park">
+          <option value="all">Both parks</option>
+          <option value="DL">Disneyland</option>
+          <option value="DCA">California Adventure</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Include</span>
+        <select id="f-kind">
+          <option value="all">Rides, shows &amp; play</option>
+          <option value="ride">Rides only</option>
+        </select>
+      </label>
+      <label class="field" id="sort-field">
+        <span>Order</span>
+        <select id="f-sort">
+          <option value="avg">Best for both kids</option>
+          <option value="park">By park and land</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="f-starred"> Starred only</label>
+    </div>
+    <div class="ctl-row" id="height-row">
+      <div class="field">
+        <span>4-year-old's height</span>
+        <div class="height-ctl">
+          <button type="button" class="btn" id="h-minus" aria-label="Half inch shorter">−</button>
+          <input type="number" id="kid-height" min="30" max="60" step="0.5" inputmode="decimal" aria-label="Height in inches">
+          <span>in</span>
+          <button type="button" class="btn" id="h-plus" aria-label="Half inch taller">+</button>
+        </div>
+      </div>
+      <p class="hint" style="flex:1 1 220px">Disney measures in shoes. Rides above this height count as “Can't ride.”</p>
+    </div>
+
+    <div class="stars-panel">
+      <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="var(--star)" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg>Stars</h2>
+      <p class="hint">Stars save on this phone. To swap picks, tap “Send my stars” and text the link; opening it adds your stars to the other phone under your name.</p>
+      <div class="stars-row">
+        <label class="field grow"><span>Your name (shown on stars you send)</span><input type="text" id="my-name" maxlength="24" placeholder="e.g. Mom" autocomplete="off"></label>
+        <button type="button" class="btn primary" id="send-stars">Send my stars</button>
+      </div>
+      <div class="share-box" id="share-box" hidden>
+        <label class="field"><span>Copy this link and text it</span><input type="text" id="share-link" readonly></label>
+      </div>
+      <div class="others" id="others"></div>
+    </div>
+    <div class="banner" id="banner" role="status" hidden></div>
+  </section>
+
+  <main id="out" aria-live="polite"></main>
+
+  <section class="info" aria-label="How to read this list">
+    <div class="panel">
+      <h3>The ratings</h3>
+      <ul class="legend" id="legend"></ul>
+    </div>
+    <div class="panel">
+      <h3>How “Best for both kids” ranks</h3>
+      <p>Each kid's rating gets points: Highly 3, Medium 2, Somewhat 1, any skip or can't-ride 0. The score is the average of the two kids, so a ride both will enjoy beats one that only suits the 4-year-old. Ties go to the ride with the higher single rating. Starred rides always come first.</p>
+      <h3>Heights and taking turns</h3>
+      <p>The baby can't ride anything with a minimum height. Rider Switch lets one adult wait with the kids while the other rides, then swap without waiting again.</p>
+      <p>Closures and holiday overlays are as of early October 2026. Check the Disneyland app for your dates.</p>
+    </div>
+    <div class="panel wide">
+      <h3>Sources</h3>
+      <ol class="sources">
+        <li><a href="https://disneyland.disney.go.com/attractions/" target="_blank" rel="noopener">Disneyland Resort attractions and height requirements</a> <span>Disney</span></li>
+        <li><a href="https://www.undercovertourist.com/blog/toddlers-at-disneyland-park/" target="_blank" rel="noopener">Toddlers at Disneyland Park</a> <span>Undercover Tourist, Mar 2026</span></li>
+        <li><a href="https://disneyparknerds.com/disneyland-for-infants/" target="_blank" rel="noopener">Disneyland for Infants</a> <span>Disney Park Nerds, Aug 2026</span></li>
+        <li><a href="https://travelsbetween.com/top-10-disneyland-rides-and-attractions-for-babies-and-toddlers/" target="_blank" rel="noopener">21 Best Disneyland Rides for Babies and Toddlers</a> <span>Travel Mamas</span></li>
+        <li><a href="https://magicguides.com/baby-rides-at-disney-land/" target="_blank" rel="noopener">Baby Rides at Disneyland</a> <span>Magic Guides, Dec 2024</span></li>
+        <li><a href="https://mickeyvisit.com/disneyland-with-toddlers/" target="_blank" rel="noopener">Disneyland With Toddlers</a> <span>Mickey Visit, Jan 2025</span></li>
+        <li><a href="https://tripswithtykes.com/top-ten-disneyland-attractions-for-toddlers-preschoolers/" target="_blank" rel="noopener">Top Disneyland attractions for toddlers and preschoolers</a> <span>Trips With Tykes, Jun 2024</span></li>
+        <li><a href="https://tripswithtykes.com/best-california-adventure-attractions-for-toddlers-preschoolers/" target="_blank" rel="noopener">Best California Adventure attractions for toddlers and preschoolers</a> <span>Trips With Tykes, Apr 2025</span></li>
+        <li><a href="https://guide2wdw.com/the-best-things-to-do-with-a-toddler-at-california-adventure/" target="_blank" rel="noopener">Best things to do with a toddler at California Adventure</a> <span>Guide2WDW, 2022</span></li>
+        <li><a href="https://theunofficialguides.com/2023/12/28/kids-and-scary-stuff-at-disneyland-resort/" target="_blank" rel="noopener">Kids and Scary Stuff at Disneyland Resort</a> <span>The Unofficial Guides, Dec 2023</span></li>
+        <li><a href="https://mickeyvisit.com/disneyland-scariest-rides/" target="_blank" rel="noopener">Disneyland's Scariest Rides for Kids</a> <span>Mickey Visit, Aug 2026</span></li>
+        <li><a href="https://dadsguidetowdw.com/?p=44583" target="_blank" rel="noopener">Disneyland rides that can be surprisingly scary</a> <span>Dad's Guide to WDW, Sep 2025</span></li>
+        <li><a href="https://www.enchantedinsider.com/tianas-bayou-adventure-at-disneyland/" target="_blank" rel="noopener">Tiana's Bayou Adventure at Disneyland</a> <span>Enchanted Insider, Apr 2026</span></li>
+        <li><a href="https://mickeyvisit.com/?p=119424" target="_blank" rel="noopener">October 2026 Disneyland ride closures</a> <span>Mickey Visit, Sep 2026</span></li>
+        <li><a href="https://mickeyvisit.com/disneyland-height-requirements-rider-switch-basics-covered/" target="_blank" rel="noopener">Disneyland height requirements and Rider Switch</a> <span>Mickey Visit, Aug 2025</span></li>
+      </ol>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script type="application/json" id="ride-data">{"rides":[{"id":"adventureland-treehouse","name":"Adventureland Treehouse","park":"DL","land":"Adventureland","kind":"play","height":0,"baby":"inconv","babyNote":"Several flights of stairs and no strollers. Nothing for a baby beyond the view (carrier only).","kid":"med","kidNote":"Climb-through treehouse to explore. Good for burning energy.","status":"","mine":""},{"id":"alice-in-wonderland","name":"Alice in Wonderland","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"some","babyNote":"Caterpillar cars with a lap bar, long lines and a loud Queen of Hearts.","kid":"med","kidNote":"Bright and silly. The Queen yelling 'Off with their heads!' bothers some kids. A good next step after Peter Pan.","status":"","mine":""},{"id":"astro-orbitor","name":"Astro Orbitor","park":"DL","land":"Tomorrowland","kind":"ride","height":0,"baby":"some","babyNote":"Faster and higher than Dumbo, with a slow-loading line.","kid":"med","kidNote":"The kid controls the height. Good views.","status":"","mine":""},{"id":"autopia","name":"Autopia","park":"DL","land":"Tomorrowland","kind":"ride","height":32,"baby":"height","babyNote":"","kid":"med","kidNote":"Kid steers while an adult works the gas (54 in to drive alone). Lap riders aren't allowed. Long, slow lines.","status":"","mine":""},{"id":"big-thunder-mountain","name":"Big Thunder Mountain Railroad","park":"DL","land":"Frontierland","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"intense","kidNote":"Often called the best first 'real' coaster. Rattly, with dark caves and explosions. The Unofficial Guide rates it too much for most preschoolers.","status":"","mine":""},{"id":"blueys-best-day-ever","name":"Bluey's Best Day Ever!","park":"DL","land":"Fantasyland","kind":"show","height":0,"baby":"med","babyNote":"Indoor music and games in the Fantasyland Theatre, with places to sit.","kid":"high","kidNote":"Bluey and Bingo on stage at set times, plus games and play spaces.","status":"Limited time; opened Mar 22, 2026.","mine":""},{"id":"buzz-lightyear","name":"Buzz Lightyear Astro Blasters","park":"DL","land":"Tomorrowland","kind":"ride","height":0,"baby":"inconv","babyNote":"Loud and dark with flashing lights. The baby just rides along.","kid":"scary","kidNote":"Shooting game kids enjoy. Loud and dark; one guide's toddler was overwhelmed. Ear muffs help.","status":"","mine":""},{"id":"casey-jr-circus-train","name":"Casey Jr. Circus Train","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"high","babyNote":"Slow, open-air and nothing scary. Seats are small for adults; ask for the caboose.","kid":"med","kidNote":"Gentle train past miniature scenes. Low capacity, so lines move slowly.","status":"","mine":""},{"id":"davy-crockett-canoes","name":"Davy Crockett's Explorer Canoes","park":"DL","land":"Bayou Country","kind":"ride","height":0,"baby":"inconv","babyNote":"Babies are allowed, but small kids wear life jackets and everyone is expected to paddle. Hard with a baby on your lap.","kid":"some","kidNote":"Real paddling with a guide. Fun for an active kid, but the adults do most of the work.","status":"Runs on select days; several closure dates in October 2026.","mine":""},{"id":"disneyland-railroad","name":"Disneyland Railroad","park":"DL","land":"Main Street, U.S.A.","kind":"ride","height":0,"baby":"high","babyNote":"Seated, slow loop with four stations. Good for a nap or a bottle. The tunnel between Tomorrowland and Main Street is dark, with dinosaur scenes.","kid":"high","kidNote":"Kids love the train, and the Grand Canyon and dinosaur diorama is a highlight. Doubles as transport around the park.","status":"","mine":""},{"id":"dumbo","name":"Dumbo the Flying Elephant","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"med","babyNote":"Gentle and short, fine as a lap baby. Waits can top an hour, so go early or late.","kid":"high","kidNote":"The classic; the kid controls the height. Best at rope drop or in the evening.","status":"","mine":""},{"id":"enchanted-tiki-room","name":"Walt Disney's Enchanted Tiki Room","park":"DL","land":"Adventureland","kind":"show","height":0,"baby":"high","babyNote":"Air-conditioned, seated show that parents recommend as a quiet place to feed. Brief loud thunderstorm near the end.","kid":"med","kidNote":"Singing birds. The thunder and goddess scene can startle some kids.","status":"","mine":""},{"id":"finding-nemo-submarine","name":"Finding Nemo Submarine Voyage","park":"DL","land":"Tomorrowland","kind":"ride","height":0,"baby":"inconv","babyNote":"Cramped submarine down narrow stairs, no strollers and a very slow line. Dark, loud volcano scene.","kid":"some","kidNote":"Familiar fish, but dark, loud and claustrophobic, with long waits.","status":"","mine":""},{"id":"gadgetcoaster","name":"Chip 'n' Dale's GADGETcoaster","park":"DL","land":"Mickey's Toontown","kind":"ride","height":35,"baby":"height","babyNote":"","kid":"high","kidNote":"The classic first roller coaster: under a minute, outdoors. Low capacity, so don't wait long.","status":"","mine":""},{"id":"golden-zephyr","name":"Golden Zephyr","park":"DCA","land":"Paradise Gardens Park","kind":"ride","height":0,"baby":"some","babyNote":"Swinging rockets. Cast members may seat the baby beside you rather than on your lap. Closes in wind.","kid":"med","kidNote":"Gentle swinging rockets over the water.","status":"","mine":""},{"id":"goofys-sky-school","name":"Goofy's Sky School","park":"DCA","land":"Paradise Gardens Park","kind":"ride","height":42,"baby":"height","babyNote":"","kid":"intense","kidNote":"Wild-mouse coaster with sharp, unbanked turns, three stories up. Reviewers call it surprisingly jarring for its cartoon theme.","status":"","mine":""},{"id":"grizzly-river-run","name":"Grizzly River Run","park":"DCA","land":"Grizzly Peak","kind":"ride","height":42,"baby":"height","babyNote":"","kid":"some","kidNote":"Raft ride with rapids and a drop. You will get soaked.","status":"","mine":""},{"id":"guardians-mission-breakout","name":"Guardians of the Galaxy: Mission BREAKOUT!","park":"DCA","land":"Avengers Campus","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"intense","kidNote":"Drop tower in the dark with the biggest drops at the resort.","status":"Monsters After Dark overlay during the Halloween season.","mine":""},{"id":"haunted-mansion","name":"Haunted Mansion","park":"DL","land":"New Orleans Square","kind":"ride","height":0,"baby":"some","babyNote":"Dark, with a loud stretching room. The baby has to fit under the doom buggy's lap bar.","kid":"scary","kidNote":"Ghosts, a graveyard and a dark stretching room. The Nightmare Before Christmas holiday version (fall through early January) is more colorful and less scary; consider moving it up if it's running.","status":"Holiday overlay runs seasonally, fall through early January.","mine":""},{"id":"incredicoaster","name":"Incredicoaster","park":"DCA","land":"Pixar Pier","kind":"ride","height":48,"baby":"height","babyNote":"","kid":"intense","kidNote":"Fast launched coaster with a loop. Not for preschoolers, and needs 48 in.","status":"","mine":""},{"id":"indiana-jones","name":"Indiana Jones Adventure","park":"DL","land":"Adventureland","kind":"ride","height":46,"baby":"height","babyNote":"","kid":"scary","kidNote":"Jerky jeep, snakes, skeletons and a rolling boulder. Guides rate it too scary for preschoolers. Needs 46 in.","status":"Closed since Sep 8, 2026 with no reopening date (as of early October).","mine":""},{"id":"inside-out-whirlwind","name":"Inside Out Emotional Whirlwind","park":"DCA","land":"Pixar Pier","kind":"ride","height":0,"baby":"some","babyNote":"Gentle spinning baskets, but it sits under the noisy Incredicoaster.","kid":"med","kidNote":"Easy spinner with short waits.","status":"","mine":""},{"id":"its-a-small-world","name":"\"it's a small world\"","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"high","babyNote":"Every guide's top baby pick: slow, air-conditioned, colorful and over 10 minutes long.","kid":"high","kidNote":"Long, bright and easy. The holiday version starts mid-November.","status":"Closed Oct 30 to Nov 12, 2026 for the holiday overlay.","mine":""},{"id":"jessies-critter-carousel","name":"Jessie's Critter Carousel","park":"DCA","land":"Pixar Pier","kind":"ride","height":0,"baby":"high","babyNote":"Carousel with benches. Rarely a long line.","kid":"med","kidNote":"Toy Story critters. Quick and easy.","status":"","mine":""},{"id":"jumpin-jellyfish","name":"Jumpin' Jellyfish","park":"DCA","land":"Paradise Gardens Park","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"med","kidNote":"Mini drop tower with gentle bounces. A good test before bigger rides.","status":"","mine":""},{"id":"jungle-cruise","name":"Jungle Cruise","park":"DL","land":"Adventureland","kind":"ride","height":0,"baby":"high","babyNote":"Covered boat, gentle motion. One loud gunshot gag near the hippos.","kid":"high","kidNote":"Animals and corny jokes. A good low-stakes test before darker rides.","status":"","mine":""},{"id":"king-arthur-carrousel","name":"King Arthur Carrousel","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"high","babyNote":"Bench chariots let you sit with the baby. Short lines.","kid":"high","kidNote":"Classic carousel horses. Quick and easy.","status":"","mine":""},{"id":"little-mermaid","name":"The Little Mermaid: Ariel's Undersea Adventure","park":"DCA","land":"Paradise Gardens Park","kind":"ride","height":0,"baby":"high","babyNote":"Slow clamshell dark ride with short waits and upbeat songs.","kid":"high","kidNote":"Catchy music. Ursula's scene is brief.","status":"","mine":""},{"id":"luigis-rollickin-roadsters","name":"Luigi's Rollickin' Roadsters","park":"DCA","land":"Cars Land","kind":"ride","height":32,"baby":"height","babyNote":"","kid":"med","kidNote":"Dancing cars with mild motion.","status":"","mine":""},{"id":"mad-tea-party","name":"Mad Tea Party","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"intense","babyNote":"Spinning ride; not for a baby.","kid":"med","kidNote":"Kids love it, and you control how fast it spins.","status":"Closed since Sep 14, 2026 with no reopening date (as of early October).","mine":""},{"id":"main-street-vehicles","name":"Main Street Vehicles","park":"DL","land":"Main Street, U.S.A.","kind":"ride","height":0,"baby":"some","babyNote":"Short, open-air, one-way trip along Main Street. Runs limited hours.","kid":"some","kidNote":"Fire engine and omnibus novelty. One way only, and lines move slowly.","status":"","mine":""},{"id":"mark-twain-riverboat","name":"Mark Twain Riverboat","park":"DL","land":"Frontierland","kind":"ride","height":0,"baby":"med","babyNote":"Open-air paddle steamer; you can walk around instead of being strapped in. Loud steam whistle and limited seating.","kid":"some","kidNote":"Pleasant loop around the river. Room to wander, but not much to do.","status":"","mine":""},{"id":"maters-junkyard-jamboree","name":"Mater's Junkyard Jamboree","park":"DCA","land":"Cars Land","kind":"ride","height":32,"baby":"height","babyNote":"","kid":"high","kidNote":"Whip-around tractors. It's outdoors, so kids can watch it first.","status":"Halloween overlay (Graveyard JamBOOree) during the fall season.","mine":""},{"id":"matterhorn-bobsleds","name":"Matterhorn Bobsleds","park":"DL","land":"Fantasyland","kind":"ride","height":42,"baby":"height","babyNote":"","kid":"intense","kidNote":"Rough, jarring coaster with single-file seats and a roaring Abominable Snowman. Hard on small bodies even at 42 in.","status":"","mine":""},{"id":"mickey-mouse-clubhouse-live","name":"Disney Jr. Mickey Mouse Clubhouse Live!","park":"DCA","land":"Hollywood Land","kind":"show","height":0,"baby":"med","babyNote":"Indoor, seated, with bright music. A good break.","kid":"high","kidNote":"Disney Jr. live show aimed squarely at preschoolers.","status":"","mine":""},{"id":"mickeys-philharmagic","name":"Mickey's PhilharMagic","park":"DCA","land":"Hollywood Land","kind":"show","height":0,"baby":"some","babyNote":"3D film with loud music and water and air effects. Seated and cool.","kid":"med","kidNote":"Fun 3D effects, but a lot of sensory input for sensitive kids.","status":"","mine":""},{"id":"monorail","name":"Disneyland Monorail","park":"DL","land":"Tomorrowland","kind":"ride","height":0,"baby":"some","babyNote":"Seated ride to Downtown Disney and back. A cool-down with a view.","kid":"med","kidNote":"Kids like riding up high. It's transport, so it fits between other rides.","status":"","mine":""},{"id":"monsters-inc","name":"Monsters, Inc. Mike & Sulley to the Rescue!","park":"DCA","land":"Hollywood Land","kind":"ride","height":0,"baby":"some","babyNote":"Slow dark ride that gets loud.","kid":"med","kidNote":"Familiar characters, but a bit dark and no songs. Skip it if the wait is long.","status":"","mine":""},{"id":"mr-toads-wild-ride","name":"Mr. Toad's Wild Ride","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"intense","babyNote":"Jerky, dark and loud with crash effects. One parent reported her baby panicked on it.","kid":"scary","kidNote":"Crashes through walls, a train collision and a scene in hell with devils. Better saved for school age.","status":"","mine":""},{"id":"peter-pans-flight","name":"Peter Pan's Flight","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"med","babyNote":"Flying pirate ship over London; the baby has to fit under the lap bar. Low capacity means long lines.","kid":"high","kidNote":"Few scary moments, so it's the standard test before other dark rides. Do it first thing.","status":"","mine":""},{"id":"pinocchios-daring-journey","name":"Pinocchio's Daring Journey","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"scary","babyNote":"Sudden dark scenes and loud noises.","kid":"scary","kidNote":"Stromboli, the boys turning into donkeys and Monstro the whale. Often named the scariest Fantasyland ride for small kids.","status":"","mine":""},{"id":"pirates-lair-tom-sawyer-island","name":"Pirate's Lair on Tom Sawyer Island","park":"DL","land":"Frontierland","kind":"play","height":0,"baby":"inconv","babyNote":"Raft crossing, no strollers, uneven paths and caves. The baby can't use any of it.","kid":"high","kidNote":"Caves, bridges and a fort to run around. One of the best places to burn off energy.","status":"","mine":""},{"id":"pirates-of-the-caribbean","name":"Pirates of the Caribbean","park":"DL","land":"New Orleans Square","kind":"ride","height":0,"baby":"some","babyNote":"Long dark boat ride (about 15 min) with two short drops and a possible splash. Babies usually aren't scared, but it's dark and loud in places.","kid":"some","kidNote":"Two drops in the dark, skeletons, cannon fire and a burning town. Some 4-year-olds love it and some don't. Try Jungle Cruise first.","status":"","mine":""},{"id":"pixar-pal-a-round-fixed","name":"Pixar Pal-A-Round (non-swinging)","park":"DCA","land":"Pixar Pier","kind":"ride","height":0,"baby":"some","babyNote":"Non-swinging gondolas. Slow and high.","kid":"med","kidNote":"Big views. Choose the non-swinging line.","status":"","mine":""},{"id":"pixar-pal-a-round-swinging","name":"Pixar Pal-A-Round (swinging)","park":"DCA","land":"Pixar Pier","kind":"ride","height":0,"baby":"intense","babyNote":"Gondolas slide and swing on rails; one guide calls it intense even for adults.","kid":"intense","kidNote":"Sudden sliding swings high up. Use the non-swinging line instead.","status":"","mine":""},{"id":"radiator-springs-racers","name":"Radiator Springs Racers","park":"DCA","land":"Cars Land","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"high","kidNote":"The top pick for Cars fans: gentle indoor scenes, then an outdoor race with some speed. Low scare factor.","status":"","mine":""},{"id":"redwood-creek-trail","name":"Redwood Creek Challenge Trail","park":"DCA","land":"Grizzly Peak","kind":"play","height":0,"baby":"some","babyNote":"Shady place for parents to sit; the baby can't use the climbing.","kid":"high","kidNote":"Rope bridges, slides and trails. The rock wall and zip line need 42 in.","status":"Halloween overlay through Oct 31; closes Nov 1 to remove it.","mine":""},{"id":"rise-of-the-resistance","name":"Star Wars: Rise of the Resistance","park":"DL","land":"Star Wars: Galaxy's Edge","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"scary","kidNote":"Long, loud and immersive: stormtroopers yelling in character, Kylo Ren up close, blaster fire and a drop at the end. One reviewer suggests age 5+ unless the kid loves Star Wars.","status":"","mine":""},{"id":"roger-rabbit-car-toon-spin","name":"Roger Rabbit's Car Toon Spin","park":"DL","land":"Mickey's Toontown","kind":"ride","height":0,"baby":"intense","babyNote":"Spinning cab through very dark scenes.","kid":"scary","kidNote":"Very dark, with weasels and a vat of 'Dip.' You can keep the spinning low, and some kids love it, but several guides call it one of the scariest dark rides.","status":"","mine":""},{"id":"runaway-railway","name":"Mickey & Minnie's Runaway Railway","park":"DL","land":"Mickey's Toontown","kind":"ride","height":0,"baby":"intense","babyNote":"Trackless and bouncy on the turns; hold the baby. Busy screens.","kid":"high","kidNote":"Step into a cartoon, with mild bumps. A favorite at this age.","status":"","mine":""},{"id":"sailing-ship-columbia","name":"Sailing Ship Columbia","park":"DL","land":"Frontierland","kind":"ride","height":0,"baby":"some","babyNote":"Same river as the riverboat but sails less often. Stairs to the lower deck.","kid":"some","kidNote":"A ship to explore. Check whether it's sailing that day.","status":"Selective closures in October 2026.","mine":""},{"id":"silly-symphony-swings","name":"Silly Symphony Swings","park":"DCA","land":"Paradise Gardens Park","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"med","kidNote":"Under 48 in rides tandem with an adult. Swings high over the water, so fine if heights don't bother them.","status":"","mine":""},{"id":"sleeping-beauty-castle-walkthrough","name":"Sleeping Beauty Castle Walkthrough","park":"DL","land":"Fantasyland","kind":"play","height":0,"baby":"some","babyNote":"Narrow stairs and no strollers. Quick with a carrier.","kid":"some","kidNote":"Short walk past Sleeping Beauty dioramas. The Maleficent scenes are mild.","status":"","mine":""},{"id":"smugglers-run","name":"Millennium Falcon: Smugglers Run","park":"DL","land":"Star Wars: Galaxy's Edge","kind":"ride","height":38,"baby":"height","babyNote":"","kid":"scary","kidNote":"Interactive flight simulator. A 4-year-old can push buttons, but the shaking and fast screens can cause motion sickness.","status":"","mine":""},{"id":"snow-whites-enchanted-wish","name":"Snow White's Enchanted Wish","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"some","babyNote":"Dark ride. The 2021 redo is gentler but still dim.","kid":"some","kidNote":"Much less scary since the 2021 redo, but the Queen still turns into the witch.","status":"","mine":""},{"id":"soarin","name":"Soarin'","park":"DCA","land":"Grizzly Peak","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"med","kidNote":"Gentle hang-glider film. Dangling feet and the height can bother some kids.","status":"Film varies by season (Across America, Over California, Around the World).","mine":""},{"id":"space-mountain","name":"Space Mountain","park":"DL","land":"Tomorrowland","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"intense","kidNote":"Fast coaster in near-total darkness with blind turns and drops.","status":"","mine":""},{"id":"star-tours","name":"Star Tours","park":"DL","land":"Tomorrowland","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"some","kidNote":"Motion simulator with random scenes. Fine for many Star Wars kids, but it jolts and can cause motion sickness.","status":"","mine":""},{"id":"storybook-land-canal-boats","name":"Storybook Land Canal Boats","park":"DL","land":"Fantasyland","kind":"ride","height":0,"baby":"med","babyNote":"Calm outdoor boat ride past miniature villages. Enters through Monstro's mouth.","kid":"med","kidNote":"Slow; older preschoolers enjoy spotting the scenes. Lines are usually short.","status":"","mine":""},{"id":"storytelling-royal-theatre","name":"Storytelling at Royal Theatre","park":"DL","land":"Fantasyland","kind":"show","height":0,"baby":"some","babyNote":"Seated, short show. A chance to sit down.","kid":"med","kidNote":"Funny retellings of Disney stories with songs. About 20 minutes.","status":"","mine":""},{"id":"tianas-bayou-adventure","name":"Tiana's Bayou Adventure","park":"DL","land":"Bayou Country","kind":"ride","height":40,"baby":"height","babyNote":"","kid":"intense","kidNote":"Log flume with a 50+ ft drop; front rows get soaked. No villain and an upbeat tone, but the drop is big. Some young kids love it, others find it too much.","status":"","mine":""},{"id":"toontown-play-areas","name":"Toontown play areas","park":"DL","land":"Mickey's Toontown","kind":"play","height":0,"baby":"med","babyNote":"Open space to stretch out, plus water play at Donald's Duck Pond.","kid":"high","kidNote":"CenTOONial Park, Goofy's How-to-Play Yard, Donald's boat and Mickey's and Minnie's houses. Buttons and levers everywhere.","status":"","mine":""},{"id":"toontown-under-2-area","name":"Toontown under-2 soft-play area","park":"DL","land":"Mickey's Toontown","kind":"play","height":0,"baby":"high","babyNote":"Gated soft-play area for kids under 2 near Donald's boat. A place to crawl. Reported by Undercover Tourist (March 2026); confirm on arrival.","kid":"inconv","kidNote":"For under-2s only. The 4-year-old has the rest of Toontown.","status":"","mine":""},{"id":"toy-story-midway-mania","name":"Toy Story Midway Mania!","park":"DCA","land":"Pixar Pier","kind":"ride","height":0,"baby":"some","babyNote":"3D shooting game; the baby rides along (eye-health guidance says no 3D before age 3).","kid":"high","kidNote":"One of the best rides for preschoolers. Long waits, so go early.","status":"","mine":""},{"id":"turtle-talk-with-crush","name":"Turtle Talk with Crush","park":"DCA","land":"Hollywood Land","kind":"show","height":0,"baby":"some","babyNote":"Seated, calm and indoors.","kid":"high","kidNote":"Crush talks back to kids in the audience.","status":"","mine":""},{"id":"web-slingers","name":"WEB SLINGERS: A Spider-Man Adventure","park":"DCA","land":"Avengers Campus","kind":"ride","height":0,"baby":"some","babyNote":"Loud screen-based ride. The baby rides along.","kid":"med","kidNote":"Kids fling webs at the screens. Loud, but there's no real villain.","status":"","mine":""},{"id":"winnie-the-pooh","name":"The Many Adventures of Winnie the Pooh","park":"DL","land":"Bayou Country","kind":"ride","height":0,"baby":"high","babyNote":"Slow, bright and musical. The volume can get loud.","kid":"high","kidNote":"Short waits and familiar characters. The Heffalumps and Woozles room is the one trippy part.","status":"","mine":""}],"kidHeight":44.0}</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("ride-data").textContent);
+  var RIDES = DATA.rides;
+  var BY_ID = {};
+  RIDES.forEach(function (r) { BY_ID[r.id] = r; });
+
+  var RATINGS = [
+    { k: "high",    label: "Highly recommend",    short: "Highly",       side: "rec",  pts: 3, desc: "Make time for these." },
+    { k: "med",     label: "Medium",              short: "Medium",       side: "rec",  pts: 2, desc: "Good if the line is reasonable." },
+    { k: "some",    label: "Somewhat",            short: "Somewhat",     side: "rec",  pts: 1, desc: "Fine with caveats. Read the note first." },
+    { k: "scary",   label: "Skip: too scary",     short: "Too scary",    side: "skip", pts: 0, desc: "Frightening scenes, sudden darkness or loud effects." },
+    { k: "intense", label: "Skip: too intense",   short: "Too intense",  side: "skip", pts: 0, desc: "Rough motion, spinning, big drops or speed." },
+    { k: "inconv",  label: "Skip: inconvenient",  short: "Inconvenient", side: "skip", pts: 0, desc: "The hassle outweighs the payoff: stairs, no strollers, slow lines." },
+    { k: "height",  label: "Can't ride (height)", short: "Can't ride",   side: "skip", pts: 0, desc: "Below the minimum height. Use Rider Switch so the adults can take turns." }
+  ];
+  var RMAP = {};
+  RATINGS.forEach(function (r) { RMAP[r.k] = r; });
+  var WHO = {
+    baby: { label: "7-month-old", tag: "7-mo", field: "baby", note: "babyNote" },
+    kid:  { label: "4-year-old",  tag: "4-yr", field: "kid",  note: "kidNote" }
+  };
+  var PARK_NAME = { DL: "Disneyland", DCA: "California Adventure" };
+  var LAND_ORDER = ["Main Street, U.S.A.", "Adventureland", "New Orleans Square", "Bayou Country", "Frontierland",
+    "Star Wars: Galaxy's Edge", "Fantasyland", "Mickey's Toontown", "Tomorrowland",
+    "Buena Vista Street", "Hollywood Land", "Avengers Campus", "Cars Land", "Pixar Pier",
+    "Paradise Gardens Park", "Grizzly Peak", "San Fransokyo Square"];
+  var STAR_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg>';
+  var STAR_OUTLINE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg>';
+
+  // ---------- local storage (this phone only) ----------
+  function load(key, fallback) { try { var v = JSON.parse(localStorage.getItem(key)); return v == null ? fallback : v; } catch (e) { return fallback; } }
+  function save(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {} }
+
+  var prefs = Object.assign({ view: "both", park: "all", kinds: "all", sort: "avg", starredOnly: false }, load("rp-prefs", {}));
+  var stars = load("rp-stars", { mine: [], name: "", others: {} });
+  if (!Array.isArray(stars.mine)) stars.mine = [];
+  if (!stars.others || typeof stars.others !== "object") stars.others = {};
+  var kidHeight = Number(load("rp-height", DATA.kidHeight || 44)) || 44;
+  var query = "";
+
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function toast(msg) { var t = $("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(function () { t.hidden = true; }, 3200); }
+
+  // ---------- scoring ----------
+  function effective(r, who) {
+    var h = Number(r.height) || 0;
+    if (who === "baby") return h > 0 ? "height" : (RMAP[r.baby] ? r.baby : "some");
+    if (h > 0 && h > kidHeight) return "height";
+    return RMAP[r.kid] ? r.kid : "some";
+  }
+  function pts(r, who) { return RMAP[effective(r, who)].pts; }
+  function avg(r) { return (pts(r, "baby") + pts(r, "kid")) / 2; }
+  function starredBy(r) {
+    var names = [];
+    if (stars.mine.indexOf(r.id) >= 0) names.push("You");
+    Object.keys(stars.others).forEach(function (n) { if ((stars.others[n] || []).indexOf(r.id) >= 0) names.push(n); });
+    return names;
+  }
+  function landIndex(l) { var i = LAND_ORDER.indexOf(l); return i < 0 ? 999 : i; }
+  function byPlace(a, b) {
+    if (a.park !== b.park) return a.park === "DL" ? -1 : 1;
+    var la = landIndex(a.land), lb = landIndex(b.land);
+    if (la !== lb) return la - lb;
+    return (a.name || "").localeCompare(b.name || "");
+  }
+  function byStars(a, b) { return starredBy(b).length - starredBy(a).length; }
+  function byAvg(a, b) {
+    var d = avg(b) - avg(a); if (d) return d;
+    var ma = Math.max(pts(a, "baby"), pts(a, "kid")), mb = Math.max(pts(b, "baby"), pts(b, "kid"));
+    if (mb !== ma) return mb - ma;
+    return byPlace(a, b);
+  }
+
+  function filtered() {
+    var q = query.trim().toLowerCase();
+    return RIDES.filter(function (r) {
+      if (prefs.park !== "all" && r.park !== prefs.park) return false;
+      if (prefs.kinds === "ride" && r.kind && r.kind !== "ride") return false;
+      if (prefs.starredOnly && !starredBy(r).length) return false;
+      if (q) {
+        var hay = [r.name, r.land, r.babyNote, r.kidNote, r.mine, r.status, PARK_NAME[r.park]].join(" ").toLowerCase();
+        if (hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+  }
+
+  // ---------- rendering ----------
+  function metaLine(r) {
+    var bits = ['<span class="park">' + esc(r.park === "DL" ? "Disneyland" : "DCA") + "</span>"];
+    if (r.land) bits.push("<span>" + esc(r.land) + "</span>");
+    if (r.kind && r.kind !== "ride") bits.push("<span>" + (r.kind === "show" ? "Show" : "Play area") + "</span>");
+    var h = Number(r.height) || 0;
+    bits.push(h > 0 ? '<span class="hreq">' + h + " in min</span>" : "<span>Any height</span>");
+    return '<div class="meta">' + bits.join("") + "</div>";
+  }
+  function statusLine(r) {
+    if (!r.status) return "";
+    return '<p class="status' + (/^closed/i.test(r.status.trim()) ? " closed" : "") + '">' + esc(r.status) + "</p>";
+  }
+  function mineLine(r) { return r.mine && String(r.mine).trim() ? '<p class="mine"><b>Notes:</b> ' + esc(r.mine) + "</p>" : ""; }
+  function starBtn(r) {
+    var on = stars.mine.indexOf(r.id) >= 0;
+    return '<button type="button" class="star" data-star="' + esc(r.id) + '" aria-pressed="' + on + '" aria-label="' + (on ? "Unstar " : "Star ") + esc(r.name) + '">' + (on ? STAR_SVG : STAR_OUTLINE) + "</button>";
+  }
+  function byLine(r) {
+    var names = starredBy(r);
+    if (!names.length) return "";
+    return '<div class="by">' + names.map(function (n) { return "<span>★ " + esc(n) + "</span>"; }).join("") + "</div>";
+  }
+  function chip(r, who, withTag) {
+    var e = effective(r, who);
+    return '<span class="chip c-' + e + '">' + (withTag ? "<small>" + WHO[who].tag + "</small> " : "") + esc(RMAP[e].short) + "</span>";
+  }
+  function heightAuto(r) {
+    var h = Number(r.height) || 0;
+    if (h > 0 && h > kidHeight && r.kid !== "height") return '<p class="auto">Needs ' + h + " in; height is set to " + kidHeight + " in.</p>";
+    return "";
+  }
+
+  function cardBoth(r) {
+    var s = avg(r);
+    var babyNote = r.babyNote || ((Number(r.height) || 0) > 0 ? "Minimum height is " + r.height + " in." : "");
+    return '<li class="card' + (starredBy(r).length ? " starred" : "") + '">' +
+      '<div class="card-top">' + starBtn(r) +
+        '<div class="title"><h3>' + esc(r.name) + "</h3>" + metaLine(r) + "</div>" +
+        '<div class="score" title="Average of both kids (0–3)"><b>' + (s % 1 ? s.toFixed(1) : s) + "</b><span>score</span></div>" +
+      "</div>" +
+      '<div class="chips">' + chip(r, "baby", true) + chip(r, "kid", true) + "</div>" +
+      byLine(r) + heightAuto(r) + statusLine(r) + mineLine(r) +
+      '<details><summary>Why</summary>' +
+        (babyNote ? "<p><b>7-month-old:</b> " + esc(babyNote) + "</p>" : "") +
+        (r.kidNote ? "<p><b>4-year-old:</b> " + esc(r.kidNote) + "</p>" : "") +
+      "</details></li>";
+  }
+  function cardOne(r, who) {
+    var w = WHO[who];
+    var note = r[w.note] || (who === "baby" && (Number(r.height) || 0) > 0 ? "Minimum height is " + r.height + " in." : "");
+    return '<li class="card' + (starredBy(r).length ? " starred" : "") + '">' +
+      '<div class="card-top">' + starBtn(r) +
+        '<div class="title"><h3>' + esc(r.name) + "</h3>" + metaLine(r) + "</div><span></span></div>" +
+      byLine(r) + (note ? '<p class="note">' + esc(note) + "</p>" : "") +
+      (who === "kid" ? heightAuto(r) : "") + statusLine(r) + mineLine(r) + "</li>";
+  }
+
+  function renderBoth(list) {
+    var sorted = list.slice().sort(function (a, b) { return byStars(a, b) || (prefs.sort === "park" ? byPlace(a, b) : byAvg(a, b)); });
+    var head = '<div class="list-head"><p>' + (prefs.sort === "park" ? "Grouped by park and land, starred rides first." :
+      "Ranked by average score for both kids (0–3), starred rides first.") + "</p></div>";
+    return head + '<div class="group"><ul class="cards">' + sorted.map(cardBoth).join("") + "</ul></div>";
+  }
+  function renderGrouped(who, list) {
+    var groups = RATINGS.map(function (r) {
+      return { r: r, items: list.filter(function (x) { return effective(x, who) === r.k; }).sort(function (a, b) { return byStars(a, b) || byPlace(a, b); }) };
+    });
+    var html = '<div class="counts" role="navigation" aria-label="Jump to group">' + groups.map(function (g) {
+      return '<button type="button" class="count c-' + g.r.k + (g.items.length ? "" : " zero") + '" data-jump="g-' + g.r.k + '">' + esc(g.r.short) + " <b>" + g.items.length + "</b></button>";
+    }).join("") + "</div>";
+    var lastSide = "";
+    groups.forEach(function (g) {
+      if (g.r.side !== lastSide) {
+        html += '<div class="side-label">' + (g.r.side === "rec" ? "Recommended for the " : "Not recommended for the ") + esc(WHO[who].label) + "</div>";
+        lastSide = g.r.side;
+      }
+      html += '<section class="group' + (g.items.length ? "" : " empty") + '" id="g-' + g.r.k + '">' +
+        '<div class="group-head"><span class="dot d-' + g.r.k + '"></span><h2>' + esc(g.r.label) + '</h2><span class="n">' + g.items.length + "</span><p>" + esc(g.r.desc) + "</p></div>" +
+        (g.items.length ? '<ul class="cards">' + g.items.map(function (x) { return cardOne(x, who); }).join("") + "</ul>" : "") + "</section>";
+    });
+    return '<div style="display:grid;gap:14px">' + html + "</div>";
+  }
+
+  function renderOthers() {
+    var names = Object.keys(stars.others);
+    $("others").innerHTML = names.map(function (n) {
+      return '<span class="other-tag">★ ' + esc(n) + " · " + (stars.others[n] || []).length + ' <button type="button" data-remove="' + esc(n) + '" aria-label="Remove ' + esc(n) + "'s stars\">Remove</button></span>";
+    }).join("");
+  }
+
+  function render() {
+    ["both", "baby", "kid"].forEach(function (v) { $("v-" + v).setAttribute("aria-pressed", String(prefs.view === v)); });
+    $("height-row").hidden = prefs.view === "baby";
+    $("sort-field").hidden = prefs.view !== "both";
+    renderOthers();
+    var list = filtered();
+    var out = $("out");
+    if (!list.length) {
+      out.innerHTML = '<div class="group"><p class="empty-msg">' + (prefs.starredOnly ? "No starred rides yet. Tap the star on any ride to add it." : "No rides match these filters. Clear the search or switch parks.") + "</p></div>";
+      return;
+    }
+    out.innerHTML = prefs.view === "both" ? renderBoth(list) : renderGrouped(prefs.view, list);
+  }
+
+  // ---------- stars ----------
+  function toggleStar(id) {
+    var i = stars.mine.indexOf(id);
+    if (i >= 0) stars.mine.splice(i, 1); else stars.mine.push(id);
+    save("rp-stars", stars);
+    render();
+    var btn = document.querySelector('[data-star="' + CSS.escape(id) + '"]');
+    if (btn) btn.focus({ preventScroll: true });
+    toast(i >= 0 ? "Unstarred " + BY_ID[id].name : "Starred " + BY_ID[id].name);
+  }
+
+  function shareLink() {
+    var name = (stars.name || "").trim();
+    var hash = "#from=" + encodeURIComponent(name) + "&stars=" + stars.mine.map(encodeURIComponent).join(",");
+    return location.origin + location.pathname + hash;
+  }
+
+  $("send-stars").addEventListener("click", function () {
+    if (!stars.mine.length) { toast("Star a few rides first."); return; }
+    if (!(stars.name || "").trim()) { $("my-name").focus(); toast("Add your name first so they know whose stars these are."); return; }
+    var url = shareLink();
+    var text = stars.name.trim() + "'s Disneyland ride stars (" + stars.mine.length + ")";
+    $("share-link").value = url;
+    $("share-box").hidden = false;
+    if (navigator.share) {
+      navigator.share({ title: "Disneyland ride stars", text: text, url: url }).catch(function () {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { toast("Link copied. Paste it into a text."); }, function () { $("share-link").select(); });
+    } else {
+      $("share-link").select();
+    }
+  });
+
+  function importFromHash() {
+    var h = location.hash.replace(/^#/, "");
+    if (!h || h.indexOf("stars=") < 0) return;
+    var params = {};
+    h.split("&").forEach(function (kv) { var p = kv.split("="); params[p[0]] = decodeURIComponent(p.slice(1).join("=") || ""); });
+    var ids = (params.stars || "").split(",").map(function (s) { return s.trim(); }).filter(function (id) { return BY_ID[id]; });
+    var from = (params.from || "").trim().slice(0, 24) || "Shared";
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    if (stars.name && from.toLowerCase() === stars.name.trim().toLowerCase()) {
+      showBanner("That's your own star link, so nothing changed.");
+      return;
+    }
+    if (!ids.length) { showBanner("That link didn't include any rides on this list."); return; }
+    stars.others[from] = ids;
+    save("rp-stars", stars);
+    showBanner("Added " + from + "'s " + ids.length + " star" + (ids.length === 1 ? "" : "s") + ". They show as “★ " + from + "” and move to the top.");
+    render();
+  }
+  function showBanner(msg) { var b = $("banner"); b.textContent = msg; b.hidden = false; }
+
+  // ---------- height ----------
+  function setHeight(v) {
+    v = Math.round(Number(v) * 2) / 2;
+    if (!isFinite(v) || v < 30 || v > 60) return;
+    kidHeight = v;
+    save("rp-height", v);
+    if (document.activeElement !== $("kid-height")) $("kid-height").value = v;
+    render();
+  }
+
+  // ---------- events ----------
+  document.querySelectorAll(".seg button").forEach(function (b) {
+    b.addEventListener("click", function () { prefs.view = b.getAttribute("data-view"); save("rp-prefs", prefs); render(); });
+  });
+  $("f-park").value = prefs.park;
+  $("f-kind").value = prefs.kinds;
+  $("f-sort").value = prefs.sort;
+  $("f-starred").checked = !!prefs.starredOnly;
+  $("f-park").addEventListener("change", function (e) { prefs.park = e.target.value; save("rp-prefs", prefs); render(); });
+  $("f-kind").addEventListener("change", function (e) { prefs.kinds = e.target.value; save("rp-prefs", prefs); render(); });
+  $("f-sort").addEventListener("change", function (e) { prefs.sort = e.target.value; save("rp-prefs", prefs); render(); });
+  $("f-starred").addEventListener("change", function (e) { prefs.starredOnly = e.target.checked; save("rp-prefs", prefs); render(); });
+  $("f-search").addEventListener("input", function (e) { query = e.target.value; render(); });
+  $("kid-height").value = kidHeight;
+  $("kid-height").addEventListener("input", function (e) { setHeight(e.target.value); });
+  $("kid-height").addEventListener("blur", function (e) { e.target.value = kidHeight; });
+  $("h-minus").addEventListener("click", function () { setHeight(kidHeight - 0.5); $("kid-height").value = kidHeight; });
+  $("h-plus").addEventListener("click", function () { setHeight(kidHeight + 0.5); $("kid-height").value = kidHeight; });
+  $("my-name").value = stars.name || "";
+  $("my-name").addEventListener("input", function (e) { stars.name = e.target.value.slice(0, 24); save("rp-stars", stars); $("share-box").hidden = true; });
+  $("others").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-remove]");
+    if (!b) return;
+    var n = b.getAttribute("data-remove");
+    delete stars.others[n];
+    save("rp-stars", stars);
+    render();
+    toast("Removed " + n + "'s stars");
+  });
+  $("out").addEventListener("click", function (e) {
+    var s = e.target.closest("[data-star]");
+    if (s) { toggleStar(s.getAttribute("data-star")); return; }
+    var j = e.target.closest("[data-jump]");
+    if (j) {
+      var g = $(j.getAttribute("data-jump"));
+      if (g) g.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    }
+  });
+  window.addEventListener("hashchange", importFromHash);
+
+  $("legend").innerHTML = RATINGS.map(function (r) {
+    return '<li><span class="chip c-' + r.k + '">' + esc(r.short) + "</span><span>" + esc(r.desc) + " (" + r.pts + " pt" + (r.pts === 1 ? "" : "s") + ")</span></li>";
+  }).join("");
+
+  render();
+  importFromHash();
+})();
+</script>
+</body>
+</html>
